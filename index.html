@@ -1,0 +1,136 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>DOAN · Khaliat Al Nahl — Project space</title>
+<style>
+:root{--ink:#1a1612;--mut:#6d6254;--bg:#faf6ef;--card:#fffdf8;--line:#e2d9c8;--gold:#b8893a;--dark:#14100c;--grn:#2f7d4f;--red:#a3341f;--amb:#b7791f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+.serif{font-family:'Liberation Serif',Georgia,'Times New Roman',serif}
+header{background:var(--dark);color:#f3ecdd;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--gold)}
+.logo{width:40px;height:40px;border:1.5px solid #c9a24f;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e0bd6a;font-family:'Liberation Serif',serif;font-size:22px}
+header .t{flex:1;min-width:200px}header .t b{display:block;font-family:'Liberation Serif',serif;font-weight:400;font-size:19px}header .t small{color:#bfae8a;letter-spacing:2px;font-size:10px}
+header .who{font-size:12px;color:#d8cdb8;display:flex;gap:10px;align-items:center}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;color:var(--ink)}
+button.p{background:var(--dark);color:#f3ecdd;border-color:var(--dark)}button.g{background:var(--gold);color:#fff;border-color:var(--gold)}
+button:hover{filter:brightness(.97)}
+nav{display:flex;gap:4px;padding:10px 22px 0;border-bottom:1px solid var(--line);background:#fff;overflow-x:auto}
+nav button{border:0;background:none;border-bottom:3px solid transparent;border-radius:0;padding:10px 14px;color:var(--mut);white-space:nowrap}
+nav button.on{color:var(--ink);border-bottom-color:var(--gold);font-weight:600}
+nav .bd{display:inline-block;background:var(--red);color:#fff;border-radius:9px;font-size:11px;padding:0 6px;margin-left:5px}
+main{max-width:980px;margin:0 auto;padding:22px}
+h1{font-family:'Liberation Serif',serif;font-weight:400;font-size:28px;margin-bottom:4px}h2{font-family:'Liberation Serif',serif;font-weight:400;font-size:20px;margin:22px 0 10px;border-bottom:1px solid var(--ink);padding-bottom:5px}
+.sub{color:var(--mut);margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.grid{display:grid;gap:12px}.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.kpi .n{font-family:'Liberation Serif',serif;font-size:30px}.kpi .l{color:var(--mut);font-size:12px;letter-spacing:.5px}
+.bar{height:8px;background:#eee5d4;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold)}
+.chip{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;border:1px solid var(--line);background:#fff;color:var(--mut);white-space:nowrap}
+.chip.doing{background:#fff4dc;border-color:#ecd49a;color:var(--amb)}.chip.sent,.chip.answered{background:#e8f1fb;border-color:#b9d2ee;color:#1f5a9a}.chip.done,.chip.validated,.chip.paid{background:#e6f3ea;border-color:#b6d9c1;color:var(--grn)}.chip.open{background:#fdeceb;border-color:#f1c2bd;color:var(--red)}
+.ph{margin-bottom:10px}.ph summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:center;padding:6px 0}.ph summary::-webkit-details-marker{display:none}
+.ph .num{width:28px;height:28px;border-radius:50%;background:var(--dark);color:#e0bd6a;display:flex;align-items:center;justify-content:center;font-family:'Liberation Serif',serif;flex:none}
+.ph .nm{flex:1;font-weight:600}.ph .dt{color:var(--mut);font-size:12px}
+.ph ul{margin:6px 0 4px 38px;list-style:none}.ph li{display:flex;gap:8px;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line);font-size:13px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;letter-spacing:1.5px;color:var(--mut);font-weight:500;text-transform:uppercase}
+textarea,input[type=text],input[type=date],input[type=url]{font:inherit;width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:#fff;color:var(--ink)}
+textarea{min-height:64px;resize:vertical}
+.q{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:12px;margin-bottom:10px}.q .tx{font-weight:600;margin-bottom:8px}
+.q .meta{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:12px;color:var(--mut);flex-wrap:wrap}
+.rep{background:#f3ede2;border-left:3px solid var(--gold);padding:8px 10px;margin-top:8px;border-radius:4px;font-size:13px}
+.msg{padding:10px 12px;border-radius:10px;margin-bottom:8px;max-width:85%;white-space:pre-wrap}.msg.client{background:#fff;border:1px solid var(--line)}.msg.admin{background:#f3ede2;border:1px solid #e6d9bb;margin-left:auto}.msg small{display:block;color:var(--mut);font-size:11px;margin-bottom:2px}
+.wait{border-left:4px solid var(--red);background:#fff7f5}
+.login{max-width:420px;margin:12vh auto;padding:0 20px;text-align:center}.login .logo{margin:0 auto 14px;width:64px;height:64px;font-size:34px;color:#b8893a;border-color:#b8893a}
+.login input{text-align:center;letter-spacing:3px;margin:14px 0 10px;font-size:16px}
+.err{color:var(--red);min-height:20px;font-size:13px}
+.toast{position:fixed;right:16px;bottom:16px;background:var(--dark);color:#f3ecdd;padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:.25s;pointer-events:none}.toast.on{opacity:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sp{flex:1}
+a{color:#8a5f12}.mut{color:var(--mut)}.small{font-size:12px}
+footer{text-align:center;color:var(--mut);font-size:11px;letter-spacing:1.5px;padding:24px}
+</style></head><body><div id="app"></div><div class="toast" id="toast"></div>
+<script>
+const SB='https://dseeuxxfnqqyfxibhtzm.supabase.co',_K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzZWV1eHhmbnFxeWZ4aWJodHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2NzkzMDAsImV4cCI6MjEwOTI1NTMwMH0.-DHg3KiEh18BGvb7dCxcxDgN-hPaI2eMhUfyBqVRRik';
+let CODE='',S=null,TAB='project',busy=false;
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ST={todo:'Planned',doing:'In progress',sent:'Awaiting your validation',done:'Validated'};
+const PST={todo:'Planned',sent:'Request sent',paid:'Received'};
+const QST={open:'To answer',answered:'Answered',validated:'Validated'};
+const fmt=n=>Number(n||0).toLocaleString('en-US',{maximumFractionDigits:2});
+const fd=d=>{if(!d)return'';const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})};
+const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const today=()=>new Date().toISOString().slice(0,10);
+function toast(t,ms=1800){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),ms)}
+async function rpc(fn,args){const r=await fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json'},body:JSON.stringify(args)});if(!r.ok){let m='';try{m=(await r.json()).message||''}catch(e){}throw new Error(m||('HTTP '+r.status))}const t=await r.text();return t?JSON.parse(t):null}
+const isA=()=>S&&S.role==='admin';
+const IT=k=>S.items.filter(i=>i.kind===k);
+async function put(o){const i=S.items.findIndex(x=>x.id===o.id);if(i>=0)S.items[i]=o;else S.items.push(o);const{id,kind,updated_at,...d}=o;return rpc('nay_cli_put',{p_code:CODE,p_id:id,p_kind:kind,p_data:d})}
+const timers={};function save(o,ms=700){clearTimeout(timers[o.id]);timers[o.id]=setTimeout(async()=>{try{await put(o);toast('Saved ✓')}catch(e){toast('Not saved: '+e.message,3500)}},ms)}
+async function load(quiet){try{const d=await rpc('nay_cli_get',{p_code:CODE});S=d;if(isA()&&!IT('q').length)await seed();return true}catch(e){if(!quiet)throw e;return false}}
+/* ---------- seed (admin only) ---------- */
+const Q=[
+['conf','Names: “Khaliat Al Nahl” (main), “Beehive Bun”, “808”. Which one is the final brand name?',1],
+['conf','Launch offer: Khaliat Al Nahl in a variety of doughs, fillings and toppings, served at opening, before Ramadan.',1],
+['conf','Second stage: about 6 months after opening, possibly side items (coffee, cinnamon rolls, croissants).',1],
+['conf','Volumes: about 80 pieces at the start; target of 300 to 400 pieces during Ramadan. Per day?',1],
+['conf','Opening hours: 3 pm to 11 pm.',1],
+['conf','Opening date: “early January 2027” in the questionnaire; the agreement targets 28 January 2027, before Ramadan. Which date do you need, and why?',1],
+['conf','Premises: 124 m², secured, at the feasibility and design stage.',1],
+['plan','Does the 124 m² include both floors? Which areas count?'],['plan','Is there a lift or a goods hoist, or is one planned? (the store is upstairs)'],['plan','Is the first-floor store for dry storage only?'],['plan','Where will deliveries of goods and waste enter and leave?'],['plan','Can the front double-height area be used (display, glazing, mezzanine)? What does the landlord allow on the shopfront?'],['plan','Do you have the plans in CAD format? Which walls are structural?'],['plan','Existing utilities: water, drainage, electricity capacity, gas, extraction, air conditioning.'],['plan','Please add photos of the premises (front, inside, ceiling, floor, back area, utilities) in Documents or send them to me.'],
+['ops','Who are your target customers, and which areas of Riyadh must delivery reach?'],['ops','Channels: delivery apps, own app or website, phone and WhatsApp, walk-in take-away? Partners already contracted?'],['ops','Do customers enter the premises, or is it a window / pick-up point? Any seating?'],['ops','At what time does production start, for a 3 pm opening? Fresh baking all day, or part prepared in advance?'],['ops','Signature doughs, fillings and toppings you already have in mind.'],['ops','Products you do NOT want; halal and allergen requirements.'],['ops','Pre-orders and large orders (events, offices, gift boxes)?'],['ops','Recipes: to avoid duplicated work, please confirm that the launch menu and recipes are developed by NAYISSORIA ADVISORY under this agreement (Phase 3).'],['ops','Total investment budget range for opening (SAR), and what is already allocated (works, equipment, branding, working capital).'],['ops','Financing: own funds, partners, bank?'],['ops','Rent start date, and any penalty if opening is late.'],['ops','Who decides and validates on menu, layout and budget? Who in your absence?'],['ops','Team: who will manage the shop and the production, and when do you recruit?'],['ops','Suppliers, designers, architects or contractors you already work with.'],['ops','Please send the business plan.'],
+['brand','Does a logo, symbol or colour palette already exist (for example a hexagon / honeycomb)? Please send the files.'],['brand','What must be kept from the existing identity? What must change?'],['brand','Three words that describe the brand (warm, premium, modern, traditional, generous…).'],['brand','Feel wanted: local Saudi, international, modern artisan, family, premium?'],['brand','Languages on signage and packaging: Arabic, English, or both?'],['brand','Three brands or places whose look you love (images or links).'],['brand','Three brands or places whose look you dislike, and why.'],['brand','Colours you like and colours you avoid.'],['brand','Slogan or tagline: existing or to create?'],['brand','Cultural or religious sensitivities to respect in the visuals.'],['brand','To design: logo and brand guide, shopfront and exterior signage, interior signage and menu boards, printed menu and flyers, packaging, uniforms, delivery app visuals and social media, website or ordering page. Please tell us which are needed now, and which later.'],
+['acc','Single contact person for approvals (name and number).'],['acc','Contact of the landlord or building manager (for access and technical questions).'],['acc','Kick-off call (about 2 hours, on site or by video): your preferred days and times.'],['acc','Site visit in Riyadh (half a day): your preferred days and times, and who will be present.']];
+const SEC={conf:['Please confirm','What we understood from your questionnaire'],plan:['Premises','Your plan and the premises'],ops:['Operation','Operation, budget and team'],brand:['Visual identity','Logo and visual identity'],acc:['Access & kick-off','Access, site visit and kick-off']};
+async function seed(){toast('Preparing the space…',4000);const a=[];Q.forEach((q,i)=>a.push({id:'q'+String(i+1).padStart(3,'0'),kind:'q',sec:q[0],text:q[1],confirm:!!q[2],ans:'',st:'open',ord:i}));a.push({id:'u0001',kind:'upd',date:today(),text:'Welcome to your project space. Here you can follow each phase, see what we need from you, and ask any question at any time.'});for(const o of a)await put(o)}
+/* ---------- helpers ---------- */
+const pct=(done,tot)=>tot?Math.round(done*100/tot):0;
+const waitQ=()=>IT('q').filter(q=>q.st==='open');
+const waitD=()=>S.dl.filter(d=>d.status==='sent');
+function chip(c,t){return '<span class="chip '+c+'">'+esc(t)+'</span>'}
+/* ---------- views ---------- */
+function vProject(){const dl=S.dl,done=dl.filter(d=>d.status==='done').length,wq=waitQ().length,wd=waitD().length,P=S.pay;
+ const nextDl=dl.filter(d=>d.status!=='done').sort((a,b)=>a.due>b.due?1:-1)[0];
+ const paid=P.filter(p=>p.status==='paid').reduce((s,p)=>s+Number(p.amount),0),tot=P.reduce((s,p)=>s+Number(p.amount),0);
+ let h='<h1>My project</h1><p class="sub">DOAN · Khaliat Al Nahl, Rabwa, Riyadh · Support Agreement NAY-KAN-2026-001</p>';
+ if(wq||wd)h+='<div class="card wait"><b>Waiting on you</b><div class="small" style="margin-top:4px">'+(wq?'<a href="#" data-tab="todo">'+wq+' question'+(wq>1?'s':'')+' to answer</a>':'')+(wq&&wd?' · ':'')+(wd?wd+' deliverable'+(wd>1?'s':'')+' awaiting your validation':'')+'</div></div>';
+ h+='<div class="grid g3"><div class="card kpi"><div class="n">'+pct(done,dl.length)+'%</div><div class="l">DELIVERABLES VALIDATED ('+done+' / '+dl.length+')</div><div class="bar" style="margin-top:8px"><i style="width:'+pct(done,dl.length)+'%"></i></div></div><div class="card kpi"><div class="n">'+(nextDl?fd(nextDl.due):'—')+'</div><div class="l">NEXT DELIVERABLE'+(nextDl?'<br><span style="text-transform:none">'+esc(nextDl.title_en)+'</span>':'')+'</div></div><div class="card kpi"><div class="n">'+fmt(paid)+'</div><div class="l">SAR RECEIVED OF '+fmt(tot)+'</div><div class="bar" style="margin-top:8px"><i style="width:'+pct(paid,tot)+'%"></i></div></div></div>';
+ const U=IT('upd').sort((a,b)=>(b.date||'')>(a.date||'')?1:-1);
+ h+='<h2>Latest updates</h2>'+(U.length?U.map(u=>'<div class="card"><div class="small mut">'+esc(fd(u.date))+(isA()?' · <a href="#" data-del="'+u.id+'">delete</a>':'')+'</div>'+esc(u.text)+'</div>').join(''):'<p class="mut">No update yet.</p>');
+ if(isA())h+='<div class="card"><div class="row"><input type="text" id="newUpd" placeholder="Write an update for the client…" style="flex:1"><button class="g" data-act="addUpd">Publish</button></div></div>';
+ h+='<h2>The 7 phases</h2>';
+ S.ph.forEach(p=>{const D=dl.filter(d=>d.phase===p.id),dn=D.filter(d=>d.status==='done').length,st=D.length&&dn===D.length?'done':(D.some(d=>d.status!=='todo')?'doing':'todo');
+  h+='<details class="card ph"><summary><div class="num">'+esc(p.num)+'</div><div class="nm">'+esc(p.title_en)+'</div><div class="dt">'+esc(fd(p.start))+' → '+esc(fd(p.end))+'</div>'+chip(st,st==='done'?'Complete':st==='doing'?'In progress':'Planned')+'</summary><div class="bar" style="margin:6px 0"><i style="width:'+pct(dn,D.length)+'%"></i></div><ul>'+D.map(d=>'<li><span>'+esc(d.ref)+' · '+esc(d.title_en)+' <span class="mut small">· due '+esc(fd(d.due))+'</span></span>'+chip(d.status,ST[d.status]||d.status)+'</li>').join('')+'</ul></details>'});
+ h+='<h2>Payments</h2><div class="card" style="overflow-x:auto"><table><tr><th>Milestone</th><th>Amount (SAR)</th><th>Planned</th><th>Status</th></tr>'+P.map(p=>'<tr><td>'+esc(p.title_en)+'</td><td>'+fmt(p.amount)+'</td><td>'+esc(fd(p.planned))+'</td><td>'+chip(p.status==='paid'?'paid':p.status==='sent'?'sent':'todo',PST[p.status]||p.status)+'</td></tr>').join('')+'</table></div>';
+ return h}
+function vQ(q){const lock=q.st==='validated'&&!isA();
+ return '<div class="q" id="'+q.id+'"><div class="tx">'+esc(q.text)+'</div>'+(q.confirm&&!lock?'<div class="row" style="margin-bottom:6px"><button data-ok="'+q.id+'">✓ OK, correct</button><span class="small mut">or write the correction below</span></div>':'')+'<textarea data-q="'+q.id+'" '+(lock?'disabled':'')+' placeholder="Your answer…">'+esc(q.ans)+'</textarea><div class="meta">'+chip(q.st,QST[q.st]||q.st)+(q.ats?'<span>last saved '+esc(q.ats)+'</span>':'')+(isA()?'<span class="sp"></span><button data-val="'+q.id+'">'+(q.st==='validated'?'Reopen':'Validate')+'</button><button data-del="'+q.id+'">✕</button>':'')+'</div>'+(isA()?'<textarea data-rep="'+q.id+'" placeholder="Your reply to the client (visible to them)…" style="margin-top:6px;min-height:44px">'+esc(q.rep||'')+'</textarea>':(q.rep?'<div class="rep"><b>NAYISSORIA:</b> '+esc(q.rep)+'</div>':''))+'</div>'}
+function vTodo(){const Qs=IT('q').sort((a,b)=>a.ord-b.ord),o=Qs.filter(q=>q.st==='open').length;let h='<h1>To complete</h1><p class="sub">'+(o?o+' of '+Qs.length+' still to answer.':'Everything is answered, thank you.')+' Your answers are saved automatically and I see them as soon as you type. “To decide” is a valid answer.</p><div class="bar" style="margin-bottom:6px"><i style="width:'+pct(Qs.length-o,Qs.length)+'%"></i></div>';
+ Object.keys(SEC).forEach(k=>{const L=Qs.filter(q=>q.sec===k);if(!L.length)return;h+='<h2>'+esc(SEC[k][1])+'</h2>'+L.map(vQ).join('')});
+ if(isA())h+='<div class="card"><div class="row"><select id="nqSec">'+Object.keys(SEC).map(k=>'<option value="'+k+'">'+esc(SEC[k][0])+'</option>').join('')+'</select><input type="text" id="nqTxt" placeholder="New question…" style="flex:1"><button class="g" data-act="addQ">Add</button></div></div>';
+ return h}
+function vDocs(){const D=IT('doc');let h='<h1>Documents</h1><p class="sub">Contract, deliverables and files shared with you.</p>';
+ h+=D.length?D.map(d=>'<div class="card row"><div class="sp"><b>'+esc(d.title)+'</b><div class="small mut">'+esc(d.note||'')+'</div></div><a class="btn" href="'+esc(d.url)+'" target="_blank" rel="noopener">Open ↗</a>'+(isA()?'<button data-del="'+d.id+'">✕</button>':'')+'</div>').join(''):'<p class="mut">No document yet.</p>';
+ if(isA())h+='<div class="card"><div class="row"><input type="text" id="ndT" placeholder="Title" style="flex:1"><input type="url" id="ndU" placeholder="https://…" style="flex:2"><input type="text" id="ndN" placeholder="Note" style="flex:1"><button class="g" data-act="addDoc">Add</button></div></div>';
+ return h}
+function vMsg(){const M=IT('msg').sort((a,b)=>(a.ts||'')>(b.ts||'')?1:-1);let h='<h1>Questions & messages</h1><p class="sub">Ask me anything about the project, at any time. I answer here.</p>';
+ h+=M.length?M.map(m=>'<div class="msg '+(m.from==='admin'?'admin':'client')+'"><small>'+(m.from==='admin'?'NAYISSORIA':'Client')+' · '+esc(m.ts)+(isA()?' · <a href="#" data-del="'+m.id+'">delete</a>':'')+'</small>'+esc(m.text)+'</div>').join(''):'<p class="mut">No message yet.</p>';
+ h+='<div class="card" style="margin-top:12px"><textarea id="newMsg" placeholder="'+(isA()?'Reply to the client…':'Write your question…')+'"></textarea><div class="row" style="margin-top:8px"><span class="sp"></span><button class="p" data-act="send">Send</button></div></div>';return h}
+function render(){const a=$('#app');if(!S){a.innerHTML='<div class="login"><div class="logo">N</div><h1>Project space</h1><p class="sub">DOAN · Khaliat Al Nahl</p><input type="text" id="code" placeholder="ACCESS CODE" autocomplete="off" autocapitalize="characters"><div class="err" id="err"></div><button class="p" id="go" style="width:100%">Enter</button><footer>NAYISSORIA ADVISORY</footer></div>';const go=async()=>{CODE=$('#code').value.trim();$('#err').textContent='';try{await load();localStorage.setItem('ncc',CODE);render()}catch(e){S=null;$('#err').textContent='Incorrect code.'}};$('#go').onclick=go;$('#code').onkeydown=e=>{if(e.key==='Enter')go()};return}
+ const wq=waitQ().length;const T=[['project','My project'],['todo','To complete'+(wq?'<span class="bd">'+wq+'</span>':'')],['docs','Documents'],['msgs','Questions']];
+ const keep=document.activeElement&&document.activeElement.dataset&&(document.activeElement.dataset.q||document.activeElement.dataset.rep);
+ a.innerHTML='<header><div class="logo">N</div><div class="t"><b>DOAN · Khaliat Al Nahl</b><small>PROJECT SPACE · NAYISSORIA ADVISORY</small></div><div class="who">'+(isA()?'Consultant view':'Client view')+'<button id="out">Log out</button></div></header><nav>'+T.map(t=>'<button data-tab="'+t[0]+'" class="'+(TAB===t[0]?'on':'')+'">'+t[1]+'</button>').join('')+'</nav><main>'+({project:vProject,todo:vTodo,docs:vDocs,msgs:vMsg}[TAB])()+'</main><footer>NAYISSORIA ADVISORY · CONFIDENTIAL</footer>';
+ $('#out').onclick=()=>{localStorage.removeItem('ncc');S=null;CODE='';render()}}
+/* ---------- events ---------- */
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-tab],[data-ok],[data-val],[data-del],[data-act]');if(!t||!S)return;
+ if(t.dataset.tab){e.preventDefault();TAB=t.dataset.tab;render();return}
+ try{
+ if(t.dataset.ok){const q=IT('q').find(x=>x.id===t.dataset.ok);q.ans='OK ✓';q.st='answered';await put(q);await load(true);render();toast('Saved ✓')}
+ else if(t.dataset.val){const q=IT('q').find(x=>x.id===t.dataset.val);q.st=q.st==='validated'?(q.ans?'answered':'open'):'validated';await put(q);render()}
+ else if(t.dataset.del){e.preventDefault();if(!confirm('Delete?'))return;await rpc('nay_cli_del',{p_code:CODE,p_id:t.dataset.del});S.items=S.items.filter(x=>x.id!==t.dataset.del);render()}
+ else if(t.dataset.act==='addQ'){const x=$('#nqTxt').value.trim();if(!x)return;const n=IT('q').length;await put({id:uid('q'),kind:'q',sec:$('#nqSec').value,text:x,confirm:false,ans:'',st:'open',ord:n+1000});render()}
+ else if(t.dataset.act==='addUpd'){const x=$('#newUpd').value.trim();if(!x)return;await put({id:uid('u'),kind:'upd',date:today(),text:x});render()}
+ else if(t.dataset.act==='addDoc'){const ti=$('#ndT').value.trim(),u=$('#ndU').value.trim();if(!ti||!/^https?:\/\//.test(u))return toast('Title and a valid link are needed',2500);await put({id:uid('d'),kind:'doc',title:ti,url:u,note:$('#ndN').value.trim()});render()}
+ else if(t.dataset.act==='send'){const x=$('#newMsg').value.trim();if(!x)return;const id=uid('m');await put({id:id,kind:'msg',from:isA()?'admin':'client',text:x,ts:new Date().toLocaleString('sv-SE',{timeZone:'Asia/Riyadh'}).slice(0,16)});await load(true);render();toast('Sent ✓')}
+ }catch(err){toast('Error: '+err.message,3500)}});
+document.addEventListener('input',e=>{const el=e.target;if(!S)return;
+ if(el.dataset.q){const q=IT('q').find(x=>x.id===el.dataset.q);q.ans=el.value;q.st=q.ans.trim()?(q.st==='validated'?'validated':'answered'):'open';save(q)}
+ else if(el.dataset.rep){const q=IT('q').find(x=>x.id===el.dataset.rep);q.rep=el.value;save(q)}});
+/* ---------- boot + live refresh ---------- */
+(async()=>{CODE=localStorage.getItem('ncc')||'';if(CODE&&await load(true)){render()}else{S=null;render()}})();
+setInterval(async()=>{if(!S||document.hidden)return;const ae=document.activeElement;if(ae&&(ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'))return;if(await load(true))render()},60000);
+</script></body></html>
