@@ -63,10 +63,18 @@ button.g{background:var(--honey);border-color:var(--honey)}
 .sum textarea{min-height:46px}
 .info{border-left:4px solid var(--honey);background:#fff8ea}
 .keyh{display:flex;align-items:center;gap:10px}.keyh .chip{margin-left:auto}
-.login button.p{background:var(--honey);color:#17110b;border-color:var(--honey);font-weight:600}</style></head><body><div id="app"></div><div class="toast" id="toast"></div>
+.login button.p{background:var(--honey);color:#17110b;border-color:var(--honey);font-weight:600}.gt{overflow-x:auto}.gt .in{min-width:780px}.gr{display:flex;align-items:center;margin:7px 0}.gr .lab{width:200px;flex:none;font-size:12.5px;padding-right:10px;line-height:1.3}
+.gr .track{position:relative;flex:1;height:32px;background:#f6efe0;border-radius:4px}.gr .gh{background:none;height:20px}.gh span{position:absolute;top:2px;font-size:10px;color:var(--mut);white-space:nowrap}
+.gl{position:absolute;top:0;bottom:0;width:1px;background:#e6dcc6}.gb{position:absolute;top:7px;height:18px;background:#ecd9ae;border-radius:9px;overflow:hidden}.gb i{display:block;height:100%;background:var(--gold)}
+.dot{position:absolute;top:11px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #8e7e5e;margin-left:-5px;z-index:1}.dot.doing{border-color:var(--amb);background:#fff4dc}.dot.sent{border-color:#1f5a9a}.dot.done{background:var(--grn);border-color:var(--grn)}
+.gtd{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--red);z-index:2}.dia{position:absolute;top:10px;width:11px;height:11px;background:#fff;border:2px solid var(--gold);transform:rotate(45deg);margin-left:-6px;z-index:1}.dia.paid{background:var(--grn);border-color:var(--grn)}
+.star{position:absolute;top:5px;margin-left:-9px;font-style:normal;font-size:20px;color:var(--gold);line-height:1;z-index:1}.pvb{background:#17110b;color:#f2b756;text-align:center;font-size:12.5px;padding:7px 12px;letter-spacing:.3px}
+.who button#pvt{margin-right:8px}
+</style></head><body><div id="app"></div><div class="toast" id="toast"></div>
 <script>
 const SB='https://dseeuxxfnqqyfxibhtzm.supabase.co',_K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzZWV1eHhmbnFxeWZ4aWJodHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2NzkzMDAsImV4cCI6MjEwOTI1NTMwMH0.-DHg3KiEh18BGvb7dCxcxDgN-hPaI2eMhUfyBqVRRik';
-let CODE='',S=null,TAB='project',busy=false;
+let CODE='',S=null,TAB='project',busy=false,PV=false;try{PV=sessionStorage.getItem('npv')==='1'}catch(e){}
+const inPV=()=>!!(PV&&S&&S.role==='admin');
 const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ST={todo:'Planned',doing:'In progress',sent:'Awaiting your validation',done:'Validated'};
 const PST={todo:'Planned',sent:'Request sent',paid:'Received'};
@@ -76,10 +84,10 @@ const fd=d=>{if(!d)return'';const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.
 const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const today=()=>new Date().toISOString().slice(0,10);
 function toast(t,ms=1800){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),ms)}
-async function rpc(fn,args){const r=await fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json'},body:JSON.stringify(args)});if(!r.ok){let m='';try{m=(await r.json()).message||''}catch(e){}throw new Error(m||('HTTP '+r.status))}const t=await r.text();const j=t?JSON.parse(t):null;if(j&&j.error){const M={locked:'Too many attempts. Please try again in 10 minutes.',short:'This code is too short.',same:'This code is already used. Choose another one.',denied:'Incorrect code.'};throw new Error(M[j.error]||j.error)}return j}
-const isA=()=>S&&S.role==='admin';
+async function rpc(fn,args){if(inPV()&&fn!=='nay_cli_get')throw new Error('Preview mode is read-only');const r=await fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:_K,Authorization:'Bearer '+_K,'Content-Type':'application/json'},body:JSON.stringify(args)});if(!r.ok){let m='';try{m=(await r.json()).message||''}catch(e){}throw new Error(m||('HTTP '+r.status))}const t=await r.text();const j=t?JSON.parse(t):null;if(j&&j.error){const M={locked:'Too many attempts. Please try again in 10 minutes.',short:'This code is too short.',same:'This code is already used. Choose another one.',denied:'Incorrect code.'};throw new Error(M[j.error]||j.error)}return j}
+const isA=()=>S&&S.role==='admin'&&!inPV();
 const IT=k=>S.items.filter(i=>i.kind===k);
-async function put(o){const i=S.items.findIndex(x=>x.id===o.id);if(i>=0)S.items[i]=o;else S.items.push(o);const{id,kind,updated_at,...d}=o;return rpc('nay_cli_put',{p_code:CODE,p_id:id,p_kind:kind,p_data:d})}
+async function put(o){if(inPV())throw new Error('Preview mode is read-only');const i=S.items.findIndex(x=>x.id===o.id);if(i>=0)S.items[i]=o;else S.items.push(o);const{id,kind,updated_at,...d}=o;return rpc('nay_cli_put',{p_code:CODE,p_id:id,p_kind:kind,p_data:d})}
 const timers={};function save(o,ms=700){clearTimeout(timers[o.id]);timers[o.id]=setTimeout(async()=>{try{await put(o);toast('Saved ✓')}catch(e){toast('Not saved: '+e.message,3500)}},ms)}
 async function load(quiet){try{const d=await rpc('nay_cli_get',{p_code:CODE});S=d;if(isA()&&!IT('q').length)await seed();return true}catch(e){if(!quiet)throw e;return false}}
 /* ---------- seed (admin only) ---------- */
@@ -142,11 +150,27 @@ function vDocs(){const D=IT('doc');let h='<h1>Documents</h1><p class="sub">Contr
 function vMsg(){const M=IT('msg').sort((a,b)=>(a.ts||'')>(b.ts||'')?1:-1);let h='<h1>Questions & messages</h1><p class="sub">Ask me anything about the project, at any time. I answer here.</p>';
  h+=M.length?M.map(m=>'<div class="msg '+(m.from==='admin'?'admin':'client')+'"><small>'+(m.from==='admin'?'NAYISSORIA':'Client')+' · '+esc(m.ts)+(isA()?' · <a href="#" data-del="'+m.id+'">delete</a>':'')+'</small>'+esc(m.text)+'</div>').join(''):'<p class="mut">No message yet.</p>';
  h+='<div class="card" style="margin-top:12px"><textarea id="newMsg" placeholder="'+(isA()?'Reply to the client…':'Write your question…')+'"></textarea><div class="row" style="margin-top:8px"><span class="sp"></span><button class="p" data-act="send">Send</button></div></div>';return h}
+function vGantt(){const ph=S.ph.slice(),dl=S.dl,P=S.pay;
+ if(!ph.length)return '<h1>Timeline</h1><p class="sub">No phase yet.</p>';
+ const D0=x=>new Date(x+'T00:00:00').getTime(),DAY=864e5;
+ const st=Math.min(...ph.map(p=>D0(p.start))),en=Math.max(...ph.map(p=>D0(p.end))),span=Math.round((en-st)/DAY)+1,u=100/span;
+ const pos=d=>Math.max(0,Math.min(100-u,((D0(d)-st)/DAY)*u));
+ const wk=[];for(let t=st;t<=en;t+=7*DAY)wk.push(t);
+ const lines=wk.map(t=>'<i class="gl" style="left:'+(((t-st)/DAY)*u)+'%"></i>').join('');
+ const td=today(),tl=(D0(td)>=st&&D0(td)<=en)?'<i class="gtd" title="Today" style="left:'+pos(td)+'%"></i>':'';
+ let h='<h1>Timeline</h1><p class="sub">Phases, deliverables and payments, week by week. The red line is today.</p><div class="card gt"><div class="in">';
+ h+='<div class="gr"><div class="lab"></div><div class="track gh">'+wk.map(t=>'<span style="left:'+(((t-st)/DAY)*u)+'%">'+new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+'</span>').join('')+'</div></div>';
+ ph.forEach(p=>{const D=dl.filter(d=>d.phase===p.id),l=pos(p.start),w=Math.max(u,pos(p.end)+u-l);
+  h+='<div class="gr"><div class="lab"><b>'+esc(p.num)+'</b> '+esc(p.title_en)+'<div class="small mut">'+avg(D)+'%</div></div><div class="track">'+lines+'<i class="gb" style="left:'+l+'%;width:'+w+'%"><i style="width:'+avg(D)+'%"></i></i>'+D.map(d=>'<i class="dot '+d.status+'" title="'+esc(d.ref+' · '+d.title_en+' · due '+fd(d.due))+'" style="left:'+(pos(d.due)+u/2)+'%"></i>').join('')+tl+'</div></div>'});
+ h+='<div class="gr"><div class="lab"><b>◆</b> Payments</div><div class="track">'+lines+P.map(p=>'<i class="dia'+(p.status==='paid'?' paid':'')+'" title="'+esc(p.title_en+' · '+fmt(p.amount)+' SAR · '+fd(p.planned))+'" style="left:'+(pos(p.planned)+u/2)+'%"></i>').join('')+tl+'</div></div>';
+ h+='<div class="gr"><div class="lab"><b>★</b> Target opening</div><div class="track">'+lines+'<i class="star" title="Target opening" style="left:'+(100-u/2)+'%">★</i>'+tl+'</div></div>';
+ h+='</div><div class="small mut" style="margin-top:10px">○ planned · <span style="color:var(--amb)">○</span> in progress · <span style="color:var(--grn)">●</span> validated · ◆ payment · bar fill = progress</div></div>';
+ return h}
 function render(){const a=$('#app');document.body.classList.toggle('lg',!S);const LHEX='<svg width="72" height="72" viewBox="0 0 58 58"><g fill="none" stroke="#e8962e" stroke-width="2.4" stroke-linejoin="round"><polygon points="20,20 28.66,25 28.66,35 20,40 11.34,35 11.34,25"/><polygon points="37.32,20 45.98,25 45.98,35 37.32,40 28.66,35 28.66,25"/><polygon points="28.66,35 37.32,40 37.32,50 28.66,55 20,50 20,40"/></g></svg>';if(!S){a.innerHTML='<div class="login"><div class="logo">'+LHEX+'</div><h1>Project space</h1><p class="sub">DOAN · Khaliat Al Nahl · خلية النحل</p><input type="text" id="code" placeholder="ACCESS CODE" autocomplete="off" autocapitalize="characters"><div class="err" id="err"></div><button class="p" id="go" style="width:100%">Enter</button><footer>NAYISSORIA ADVISORY</footer></div>';const go=async()=>{CODE=$('#code').value.trim();$('#err').textContent='';try{await load();localStorage.setItem('ncc',CODE);render()}catch(e){S=null;$('#err').textContent=/Too many/.test(e.message)?e.message:'Incorrect code.'}};$('#go').onclick=go;$('#code').onkeydown=e=>{if(e.key==='Enter')go()};return}
- const wq=waitQ().length;const HEX='<svg width="46" height="46" viewBox="0 0 58 58"><g fill="none" stroke="#e8962e" stroke-width="2.4" stroke-linejoin="round"><polygon points="20,20 28.66,25 28.66,35 20,40 11.34,35 11.34,25"/><polygon points="37.32,20 45.98,25 45.98,35 37.32,40 28.66,35 28.66,25"/><polygon points="28.66,35 37.32,40 37.32,50 28.66,55 20,50 20,40"/></g></svg>';const T=[['project','My project'],['todo','To complete'+(wq?'<span class="bd">'+wq+'</span>':'')],['docs','Documents'],['msgs','Questions'],['code','My code']];
+ const wq=waitQ().length;const HEX='<svg width="46" height="46" viewBox="0 0 58 58"><g fill="none" stroke="#e8962e" stroke-width="2.4" stroke-linejoin="round"><polygon points="20,20 28.66,25 28.66,35 20,40 11.34,35 11.34,25"/><polygon points="37.32,20 45.98,25 45.98,35 37.32,40 28.66,35 28.66,25"/><polygon points="28.66,35 37.32,40 37.32,50 28.66,55 20,50 20,40"/></g></svg>';const T=[['project','My project'],['gantt','Timeline'],['todo','To complete'+(wq?'<span class="bd">'+wq+'</span>':'')],['docs','Documents'],['msgs','Questions'],['code','My code']];
  const keep=document.activeElement&&document.activeElement.dataset&&(document.activeElement.dataset.q||document.activeElement.dataset.rep);
- a.innerHTML='<header><div class="logo">'+HEX+'</div><div class="t"><b>DOAN <span class="ar" dir="rtl">خلية النحل</span></b><small>KHALIAT AL NAHL · PROJECT SPACE · NAYISSORIA ADVISORY</small></div><div class="who">'+(isA()?'Consultant view':'Client view')+'<button id="out">Log out</button></div></header><nav>'+T.map(t=>'<button data-tab="'+t[0]+'" class="'+(TAB===t[0]?'on':'')+'">'+t[1]+'</button>').join('')+'</nav><main>'+({project:vProject,todo:vTodo,docs:vDocs,msgs:vMsg,code:vCode}[TAB])()+'</main><footer>NAYISSORIA ADVISORY · CONFIDENTIAL</footer>';
- $('#out').onclick=()=>{localStorage.removeItem('ncc');S=null;CODE='';render()}}
+ a.innerHTML='<header><div class="logo">'+HEX+'</div><div class="t"><b>DOAN <span class="ar" dir="rtl">خلية النحل</span></b><small>KHALIAT AL NAHL · PROJECT SPACE · NAYISSORIA ADVISORY</small></div><div class="who">'+(S.role==='admin'?(inPV()?'Client view (preview)':'Consultant view')+'<button id="pvt">'+(inPV()?'Back to consultant view':'View as client')+'</button>':'Client view')+'<button id="out">Log out</button></div></header><nav>'+T.map(t=>'<button data-tab="'+t[0]+'" class="'+(TAB===t[0]?'on':'')+'">'+t[1]+'</button>').join('')+'</nav>'+(inPV()?'<div class="pvb">You are seeing exactly what the client sees. Read-only, refreshed every 20 seconds.</div>':'')+'<main>'+({project:vProject,gantt:vGantt,todo:vTodo,docs:vDocs,msgs:vMsg,code:vCode}[TAB])()+'</main><footer>NAYISSORIA ADVISORY · CONFIDENTIAL</footer>';
+ $('#out').onclick=()=>{localStorage.removeItem('ncc');try{sessionStorage.removeItem('npv')}catch(e){}PV=false;S=null;CODE='';render()};const pt=$('#pvt');if(pt)pt.onclick=()=>{PV=!PV;try{sessionStorage.setItem('npv',PV?'1':'')}catch(e){}if(TAB==='code')TAB='project';render()}}
 /* ---------- events ---------- */
 document.addEventListener('click',async e=>{const t=e.target.closest('[data-tab],[data-ok],[data-val],[data-pri],[data-del],[data-act]');if(!t||!S)return;
  if(t.dataset.tab){e.preventDefault();TAB=t.dataset.tab;render();return}
@@ -167,5 +191,5 @@ document.addEventListener('input',e=>{const el=e.target;if(!S)return;
  else if(el.dataset.rep){const q=IT('q').find(x=>x.id===el.dataset.rep);q.rep=el.value;save(q)}});
 /* ---------- boot + live refresh ---------- */
 (async()=>{CODE=localStorage.getItem('ncc')||'';if(CODE&&await load(true)){render()}else{S=null;render()}})();
-setInterval(async()=>{if(!S||document.hidden)return;const ae=document.activeElement;if(ae&&(ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'))return;if(await load(true))render()},60000);
+setInterval(async()=>{if(!S||document.hidden)return;const ae=document.activeElement;if(ae&&(ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'))return;if(await load(true))render()},20000);
 </script></body></html>
